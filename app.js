@@ -1,21 +1,23 @@
 const express = require('express');
+const todoRoutes = require('./routes/tododb.js');
 const app = express();
-const todoRoutes = require('./routes/todo.js');
-const port = 80;
+require('dotenv').config();
+const port = process.env.PORT;
 
 app.use(express.json());
+
 app.use('/todos', todoRoutes);
-
 app.set('view engine', 'ejs');
-
-//Memastikan file index.ejs di dalam folder views
 app.get('/', (req, res) => {
-    res.render('index'); 
+    res.render('index');
 });
 
-//Memastikan file contact.ejs di dalam folder views
 app.get('/contact', (req, res) => {
-    res.render('contact'); 
+    res.render('contact');
+});
+
+app.use((req, res) => {
+    res.status(404).send('404 - Page Not Found');
 });
 
 app.listen(port, () => {
