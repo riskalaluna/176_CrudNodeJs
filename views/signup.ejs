@@ -1,13 +1,23 @@
-<h1>Sign Up</h1>
-<form action="/signup" method="POST">
-    <div class="mb-3">
-        <label for="username" class="form-label">Username</label>
-        <input type="text" class="form-control" id="username" name="username" required>
-    </div>
-    <div class="mb-3">
-        <label for="password" class="form-label">Password</label>
-        <input type="password" class="form-control" id="password" name="password" required>
-    </div>
-    <button type="submit" class="btn btn-primary">Sign Up</button>
-</form>
-<p>Sudah punya akun? <a href="/login">Login di sini</a>.</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="/css/signup.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <img src="/images/logo.jpeg" alt="Logo" class="logo">
+            <h1 class="title">Sign Up</h1>
+            <p class="subtitle">Welcome!</p>
+            <form action="/signup" method="POST">
+                <input type="text" name="username" placeholder="Username" class="form-input" required>
+                <input type="password" name="password" placeholder="Password" class="form-input" required>
+                <button type="submit" class="btn">Sign Up</button>
+                <p>Sudah Memiliki Akun?    <a href="/login">Login</a>.</p>
+            </form>
+        </div>
+    </body>
+</html>

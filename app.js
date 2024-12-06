@@ -1,6 +1,7 @@
 const express = require('express');
 const todoRoutes = require('./routes/tododb.js');
 const app = express();
+const path = require('path'); 
 require('dotenv').config();
 const port = process.env.PORT;
 const db = require('./database/db');
@@ -9,35 +10,41 @@ const session = require('express-session');
 const authRoutes = require('./routes/authRoutes');
 const { isAuthenticated } = require('./middlewares/middleware.js');
 
-app.use(express.urlencoded({ extended: true }));
-app.use(expressLayouts);
 app.use(express.json());
-
-// Konfigurasi express-session
-app.use(session({
-    secret: process.env.SESSION_SECRET, // Gunakan secret key yang aman
-    resave: false,
-    saveUninitialized: false,
-    cookie: { secure: false } // Set ke true jika menggunakan HTTPS
-}));
-
-app.use('/', authRoutes);
-app.use('/todos', todoRoutes);
+app.use('/todos',todoRoutes);
 app.set('view engine', 'ejs');
 
-app.get('/',isAuthenticated, (req, res) => {
+app.use(express.urlencoded({ extended: true }));
+app.use(session({
+    secret: process.env.SESSION_SECRET || 'your_secret_key',
+    resave: false,
+    saveUninitialized: false,
+    cookie: { secure: false } 
+}));
+
+app.use(express.static(path.join(__dirname, 'public')));
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+app.use('/', authRoutes);
+
+app.get('/login', (req, res) => {
+    console.log('Rendering login page with login-layouts');
+    res.render('login', { layout:"layouts/login-layouts" });
+});
+
+app.get('/', isAuthenticated, (req, res) =>{
     res.render('index', {
-        layout : 'layouts/main-layout'
+        layout: 'layouts/main-layout'
     });
 });
 
-app.get('/contact', (req, res) => {
-    res.render('contact', {
-        layout : 'layouts/main-layout'
+app.get('/contact', isAuthenticated, (req, res) =>{
+    res.render('contact',  {
+        layout: 'layouts/main-layout'
     });
 });
 
-app.get('/todo-view', (req, res) => {
+app.get('/todo', isAuthenticated, (req, res) => {
     db.query('SELECT * FROM todos', (err, todos) => {
         if (err) return res.status(500).send('Internal Server Error');
         res.render('todo', {
@@ -45,10 +52,6 @@ app.get('/todo-view', (req, res) => {
             todos: todos
         });
     });
-});
-
-app.get((req, res) => {
-    res.status(404).send('404 - Page Not Found');
 });
 
 app.listen(port, () => {

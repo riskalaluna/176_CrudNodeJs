@@ -1,5 +1,62 @@
-<div class="container">
-    <h1>Welcome to the Home Page!</h1>
-    <p>This is the home page of our application.</p>
-    <a href="/contact" class="btn btn-primary">Go to Contact Page</a>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+    
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="#" class="navbar-logo">
+                <img src="images/logo.jpeg" alt="Profile Picture" class="profile-picture">
+            </a>
+            <ul class="navbar-menu">
+                <li><a href="/" class="nav-link">Home</a></li>
+                <li><a href="/contact" class="nav-link">Contact</a></li>
+                <li><a href="/todo" class="nav-link ">Todo</a></li>
+                
+            </ul>
+            <ul class="navbar-signout">
+                <li><a href="/login" class="nav-link">
+                        <i class="fas fa-sign-out-alt"></i> Sign Out
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    
+    <div class="hero">
+        <h1 class="hero-title">Welcome to Luna Flowers</h1>
+        <p class="hero-description">Temukan bunga yang ingin kamu cari!</p>
+        <a href="/contact" class="hero-btn">Contact Page</a>
+    </div>
+  
+    <div class="features">
+        <div class="feature">
+            <img src="images/bunga1.jpg" alt="Welcome" class="feature-img">
+            <h3>Bunga Kamboja</h3>
+            <p>Eksotis dan menenangkan, bunga kamboja sering digunakan untuk menciptakan suasana damai dan spiritual.</p>
+        </div>
+        <div class="feature">
+            <img src="images/bunga2.jpg" alt="Todo List" class="feature-img">
+            <h3>Bunga Lily</h3>
+            <p>Elegan dan berkelas, lily melambangkan keanggunan serta kemurnian hati.</p>
+        </div>
+        <div class="feature">
+            <img src="images/bunga3.jpg" alt="Contact" class="feature-img">
+            <h3>Bunga Mawar Merah</h3>
+            <p>Ungkapan cinta dan hasrat, mawar merah selalu menjadi pilihan klasik untuk menyampaikan perasaan.</p>
+        </div>
+    </div>
+    
+    <footer class="footer">
+        <div class="container">
+            <p>© Copyright 2024 lalunariska</p>
+        </div>
+    </footer>
+</body>
+</html>
